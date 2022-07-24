@@ -1,0 +1,36 @@
+<div class="row mt-3">
+    <div class="col-lg-6">
+        <h3 class="text-center fontDoc">Listado de Comentarios</h3>
+    </div>
+    <div class="col-lg-6">
+        <button class="btn btn-primary float-end fontDoc" routerLink="/agregar">Nuevo Comentario</button>
+    </div>
+</div>
+
+<table *ngIf="listComentarios.length > 0" class="table table-hover mt-3">
+    <thead>
+        <tr class="table-dark">
+            <td class=" fw-bold fontDoc">Titulo</td>
+            <td class=" fw-bold fontDoc">Creador</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let comentario of listComentarios">
+            <td>
+                <a class=" fw-semibold fontDoc" [routerLink]="['/ver', comentario.id]">{{comentario.titulo}}</a>
+            </td>
+            <td class=" fw-semibold fontDoc">{{comentario.creador}}</td>
+            <td style="width: 10%;">
+                <button [routerLink]="['/editar', comentario.id]" class="btn btn-info btn-sm float-end fontDoc">Editar</button>
+            </td>
+            <td style="width: 10%;">
+                <button (click)="eliminarComentario(comentario.id)" class="btn btn-danger btn-sm float-end fontDoc">Eliminar</button>
+            </td> 
+        </tr>
+    </tbody>
+</table>
+<div *ngIf="listComentarios.length == 0" class="row mt-5">
+    <h5 class=" fw-semibold fontDoc">No hay comentarios para mostrar</h5>
+</div>
